@@ -2,7 +2,7 @@ return {
 
   'obsidian-nvim/obsidian.nvim',
   version = '*',
-  lazy = true,
+  lazy = false,
 
   -- Load Obsidian.nvim for all markdown files BEFORE ftplugins run
   ft = 'markdown',
@@ -18,7 +18,7 @@ return {
     -------------------------------------------------------------------------
     -- Static output directory for LeetCode notes
     -------------------------------------------------------------------------
-    local PROBLEMS_PATH = vim.fn.expand '~/Vaults/personal/_leetcode'
+    local PROBLEMS_PATH = vim.fn.expand 'leetcode'
 
     -------------------------------------------------------------------------
     -- LeetCode Problem Creator
@@ -108,10 +108,6 @@ return {
       desc = 'New LeetCode problem note',
     })
 
-    vim.keymap.set('n', '<leader>nn', ':ObsidianNewFromTemplate<CR>', {
-      desc = 'New note from template',
-    })
-
     vim.keymap.set('n', '<leader>na', ':ObsidianTagsActive<CR>', {
       desc = 'Find active notes',
     })
@@ -122,26 +118,13 @@ return {
     obsidian.setup {
       workspaces = {
         {
-          name = 'personal',
-          path = vim.fn.expand '~/Vaults/personal/',
-        },
-      },
-
-      templates = {
-        folder = vim.fn.expand '~/Vaults/personal/_templates',
-        date_format = '%Y-%m-%d',
-        time_format = '%H:%M',
-        substitutions = {
-          yesterday = function()
-            return os.date('%Y-%m-%d', os.time() - 86400)
-          end,
-          tomorrow = function()
-            return os.date('%Y-%m-%d', os.time() + 86400)
-          end,
+          name = 'leetcode',
+          path = vim.fn.expand '~/leetcode',
         },
       },
 
       ui = { enable = true },
+      legacy_commands = false,
 
       note_frontmatter_func = function(note)
         local now = os.date '%Y-%m-%d %H:%M'

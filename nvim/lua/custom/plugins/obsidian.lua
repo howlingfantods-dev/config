@@ -80,7 +80,6 @@ return {
               vim.cmd('edit ' .. filename)
 
               local content = {
-
                 '# ' .. problem.frontend_id .. '. ' .. problem.title,
                 '',
                 '**Difficulty**: ' .. problem.difficulty,
@@ -89,11 +88,16 @@ return {
                 '## Problem Statement',
                 problem.url,
                 '',
-                '## 🧠 Idea (1–2 sentences)\n<!-- What was the core insight? -->',
+                '## 🧠 Idea (1–2 sentences)',
+                '<!-- What was the core insight? -->',
                 '',
-                '## 🔧 Approach\n<!-- Bullets. No paragraphs. -->\n\n- ',
+                '## 🔧 Approach',
+                '<!-- Bullets. No paragraphs. -->',
                 '',
-                '## 🧪 Edge Cases\n- ',
+                '- ',
+                '',
+                '## 🧪 Edge Cases',
+                '- ',
               }
 
               vim.api.nvim_buf_set_lines(0, 0, -1, false, content)
